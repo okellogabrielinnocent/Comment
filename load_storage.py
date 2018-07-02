@@ -1,53 +1,91 @@
 import pickle
 
 
-def load_users():
-    with open('users.pickle', 'rb') as handle:
-        users = pickle.load(handle)
-    if users:
-        return users
-    return False
-
-
-def save_users(data):
-    with open('pickles/users.pickle', 'wb') as handle:
-        pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-
-def load_comments():
-    with open('pickles/comments.pickle', 'rb') as handle:
-        comment = pickle.load(handle)
-    if comment:
+class Storage:
+    @staticmethod
+    def load_users():
+        try:
+            with open('pickles_users.pickle', 'rb+') as handle:
+                comment = pickle.load(handle)
+        except FileNotFoundError:
+            try:
+                with open('pickles_users.pickle', 'w+') as handle:
+                    comment = pickle.load(handle)
+            except Exception as ep:
+                return ep
         return comment
-    return False
 
+    @staticmethod
+    def save_users(data):
+        try:
+            with open('pickles_users.pickle', 'wb+') as handle:
+                pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        except Exception as ex:
+            return ex
+        return True
 
-def save_comments(data):
-    with open('pickles/comments.pickle', 'wb') as handle:
-        pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-
-def load_responses():
-    with open('pickles/responses.pickle', 'rb') as handle:
-        comment = pickle.load(handle)
-    if comment:
+    @staticmethod
+    def load_comments():
+        try:
+            with open('pickles_comments.pickle', 'rb+') as handle:
+                comment = pickle.load(handle)
+        except FileNotFoundError:
+            try:
+                with open('pickles_comments.pickle', 'wb') as handle:
+                    comment = pickle.load(handle)
+            except Exception as ep:
+                return ep
         return comment
-    return False
 
+    @staticmethod
+    def save_comments(data):
+        try:
+            with open('pickles_comments.pickle', 'wb+') as handle:
+                pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        except Exception as ex:
+            return ex
+        return True
 
-def save_responses(data):
-    with open('pickles/responses.pickle', 'wb') as handle:
-        pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-
-def load_logs():
-    with open('pickles/logs.pickle', 'rb') as handle:
-        comment = pickle.load(handle)
-    if comment:
+    @staticmethod
+    def load_responses():
+        try:
+            with open('pickles_responses.pickle', 'rb+') as handle:
+                comment = pickle.load(handle)
+        except FileNotFoundError:
+            try:
+                with open('pickles_responses.pickle', 'wb') as handle:
+                    comment = pickle.load(handle)
+            except Exception as ep:
+                return ep
         return comment
-    return False
 
+    @staticmethod
+    def save_responses(data):
+        try:
+            with open('pickles_responses.pickle', 'wb+') as handle:
+                pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        except Exception as ex:
+            return ex
+        return True
 
-def save_logs(data):
-    with open('pickles/logs.pickle', 'wb') as handle:
-        pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    @staticmethod
+    def load_logs():
+        try:
+            with open('pickles_logs.pickle', 'rb+') as handle:
+                comment = pickle.load(handle)
+        except Exception as ex:
+            try:
+                with open('pickles_logs.pickle', 'wb') as handle:
+                    comment = pickle.load(handle)
+            except Exception as ep:
+                return ep
+        return comment
+
+    @staticmethod
+    def save_logs(data):
+        try:
+            with open('pickles_logs.pickle', 'wb+') as handle:
+                pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        except Exception as ex:
+            return ex
+        return True
