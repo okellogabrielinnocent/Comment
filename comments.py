@@ -30,9 +30,8 @@ class Comment:
         for comment in the_comment:
             if 'comment_id' = 'C01':
                 edited_comment = input('Enter new comment')
-                'comment_body' = edited_comment
-        else:
-            
+                self.comment_body = edited_comment
+        
 
 
        
